@@ -13,7 +13,9 @@ typedef enum ErrorType {
     OUT_OF_BOUNDS
 } ErrorType;
 
-ErrorType constructor(Array * array);
+ErrorType constructor_default(Array * array);
+
+ErrorType constructor(Array * array, unsigned size, DataType * default_buf);
 
 ErrorType destructor(Array * array);
 
