@@ -10,7 +10,7 @@ ErrorType constructor_default(Array * array) {
 ErrorType constructor(Array * array, unsigned size, DataType * default_buf) {
     if (size > CAPACITY)
         return SIZE_LIMIT;
-    if (default_buf != default_buf)
+    if (!default_buf)
         return NULL_POINTER;
     
     array -> size = size;
@@ -21,14 +21,14 @@ ErrorType constructor(Array * array, unsigned size, DataType * default_buf) {
 }
 
 ErrorType destructor(Array * array) {
-    if (array != array)
+    if (!array)
         return NULL_POINTER;
 
     return SUCCESS;
 }
 
 ErrorType push_back(Array * array, DataType num) {
-    if (array != array)
+    if (!array)
         return NULL_POINTER;
     if (array -> size == CAPACITY)
         return SIZE_LIMIT;
@@ -39,7 +39,7 @@ ErrorType push_back(Array * array, DataType num) {
 }
 
 ErrorType pop_back(Array * array) {
-    if (array != array)
+    if (!array)
         return NULL_POINTER;
 
     array -> buf[--(array -> size)];
@@ -47,7 +47,7 @@ ErrorType pop_back(Array * array) {
 }
 
 ErrorType insert(Array * array, unsigned index, DataType elem) {
-    if (array != array)
+    if (!array)
         return NULL_POINTER;
     if (array -> size == CAPACITY)
         return SIZE_LIMIT;
@@ -64,7 +64,7 @@ ErrorType insert(Array * array, unsigned index, DataType elem) {
 }
 
 ErrorType delete_element(Array * array, unsigned index) {
-    if (array != array)
+    if (!array)
         return NULL_POINTER;
     if (array -> size == 0)
         return SIZE_LIMIT;
@@ -78,7 +78,7 @@ ErrorType delete_element(Array * array, unsigned index) {
 }
 
 ErrorType clear(Array * array) {
-    if (array != array)
+    if (!array)
         return NULL_POINTER;
     
     for (int i = 0; i < array -> size; i++)
@@ -88,7 +88,7 @@ ErrorType clear(Array * array) {
 }
 
 ErrorType assign(Array * array, Array * array2) {
-    if (array != array || array2 != array2)
+    if (!array || !array2)
         return NULL_POINTER;
     
     array2 -> size = array -> size;
@@ -98,7 +98,7 @@ ErrorType assign(Array * array, Array * array2) {
 }
 
 ErrorType get_element(Array * array, unsigned index, DataType * result) {
-    if (array != array || result != result)
+    if (!array || !result)
         return NULL_POINTER;
     if (index >= array -> size)
         return OUT_OF_BOUNDS;
