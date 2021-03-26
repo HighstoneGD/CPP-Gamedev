@@ -29,6 +29,6 @@ ErrorType delete_element(Array * array, unsigned index);
 
 ErrorType clear(Array * array);
 
-ErrorType assign(Array * array, Array * array2);
+ErrorType assign(Array * array, Array array2);
 
 ErrorType get_element(Array * array, unsigned index, DataType * result);
