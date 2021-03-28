@@ -1,7 +1,10 @@
 typedef int DataType;
 
+const unsigned DEFAULT_CAPACITY = 16;
+
 typedef struct DynamicArray {
     unsigned size;
+    unsigned capacity;
     DataType *buf;
 } DynamicArray;
 

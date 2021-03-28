@@ -7,6 +7,7 @@ ErrorType default_constructor(DynamicArray *array) {
     
     array -> buf = NULL;
     array -> size = 0;
+    array -> capacity = DEFAULT_CAPACITY;
 }
 
 ErrorType constructor(DynamicArray *array, unsigned size, DataType *default_array) {
@@ -27,7 +28,7 @@ ErrorType destructor(DynamicArray *array) {
         return NULL_POINTER;
     
     free(array -> buf);
-    array -> size = 0;
+    //array -> size = 0;
 
     return SUCCESS;
 }
