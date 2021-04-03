@@ -1,1 +1,0 @@
-"cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"

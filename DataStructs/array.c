@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "array.h"
 
-ErrorType constructor_default(Array * array) {
+ErrorType array_constructor_default(Array * array) {
     if (!array)
         return NULL_POINTER;
 
@@ -10,7 +10,7 @@ ErrorType constructor_default(Array * array) {
     return SUCCESS;
 }
 
-ErrorType constructor(Array * array, unsigned size, DataType * default_buf) {
+ErrorType array_constructor(Array * array, unsigned size, DataType * default_buf) {
     if (!array)
         return NULL_POINTER;
     if (size > CAPACITY)
@@ -19,20 +19,20 @@ ErrorType constructor(Array * array, unsigned size, DataType * default_buf) {
         return NULL_POINTER;
     
     array -> size = size;
-    for (int i = 0; i < size; i++)
+    for (unsigned i = 0; i < size; i++)
         array -> buf[i] = default_buf[i];
 
     return SUCCESS;
 }
 
-ErrorType destructor(Array * array) {
+ErrorType array_destructor(Array * array) {
     if (!array)
         return NULL_POINTER;
 
     return SUCCESS;
 }
 
-ErrorType push_back(Array * array, DataType elem) {
+ErrorType array_push_back(Array * array, DataType elem) {
     if (!array)
         return NULL_POINTER;
     if (array -> size == CAPACITY)
@@ -43,7 +43,7 @@ ErrorType push_back(Array * array, DataType elem) {
     return SUCCESS;
 }
 
-ErrorType pop_back(Array * array) {
+ErrorType array_pop_back(Array * array) {
     if (!array)
         return NULL_POINTER;
     if (array -> size == 0)
@@ -53,7 +53,7 @@ ErrorType pop_back(Array * array) {
     return SUCCESS;
 }
 
-ErrorType insert(Array * array, unsigned index, DataType elem) {
+ErrorType array_insert(Array * array, unsigned index, DataType elem) {
     if (!array)
         return NULL_POINTER;
     if (array -> size == CAPACITY)
@@ -70,7 +70,7 @@ ErrorType insert(Array * array, unsigned index, DataType elem) {
     return SUCCESS;
 }
 
-ErrorType delete_element(Array * array, unsigned index) {
+ErrorType array_delete_element(Array * array, unsigned index) {
     if (!array)
         return NULL_POINTER;
     if (array -> size == 0)
@@ -79,12 +79,12 @@ ErrorType delete_element(Array * array, unsigned index) {
         return OUT_OF_BOUNDS;
     
     array -> size--;
-    for (int i = index; i < array -> size; i++)
+    for (unsigned i = index; i < array -> size; i++)
         array -> buf[i] = array -> buf[i + 1];
     return SUCCESS;
 }
 
-ErrorType clear(Array * array) {
+ErrorType array_clear(Array * array) {
     if (!array)
         return NULL_POINTER;
     
@@ -92,17 +92,17 @@ ErrorType clear(Array * array) {
     return SUCCESS;
 }
 
-ErrorType assign(Array * array, Array array2) {
+ErrorType array_assign(Array * array, Array array2) {
     if (!array)
         return NULL_POINTER;
     
     array -> size = array2.size;
-    for (int i = 0; i < array2.size; i++)
+    for (unsigned i = 0; i < array2.size; i++)
         array -> buf[i] = array2.buf[i];
     return SUCCESS;
 }
 
-ErrorType get_element(Array * array, unsigned index, DataType * result) {
+ErrorType array_get_element(Array * array, unsigned index, DataType * result) {
     if (!array || !result)
         return NULL_POINTER;
     if (index >= array -> size)

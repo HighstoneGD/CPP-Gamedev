@@ -1,21 +1,16 @@
+#include "errortype.h"
+
+#define DEFAULT_CAPACITY 16
+
 typedef int DataType;
 
 typedef struct DynamicArray {
     unsigned size;
+    unsigned capacity;
     DataType *buf;
 } DynamicArray;
 
-typedef enum ErrorType {
-    SUCCESS,
-    SIZE_LIMIT,
-    NULL_POINTER,
-    OUT_OF_BOUNDS,
-    MEMORY_ALLOC_ERROR
-} ErrorType;
-
 ErrorType constructor(DynamicArray *array);
-
-// ErrorType constructor(DynamicArray *array, unsigned size, DataType *default_array);
 
 ErrorType destructor(DynamicArray *array);
 

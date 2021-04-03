@@ -5,22 +5,11 @@ ErrorType constructor(DynamicArray *array) {
     if (!array)
         return NULL_POINTER;
     
-    array -> buf = NULL;
+    array -> capacity = DEFAULT_CAPACITY;
+    array -> buf = malloc(sizeof(DataType) * array -> capacity);
     array -> size = 0;
+    return SUCCESS;
 }
-
-// ErrorType constructor(DynamicArray *array, unsigned size, DataType *default_array) {
-//     if (!array || !default_array)
-//         return NULL_POINTER;
-    
-//     array -> size = size;
-//     array -> buf = malloc(sizeof(DataType) * size);
-    
-//     for (int i = 0; i < size; i++)
-//         array -> buf[i] = default_array[i];
-    
-//     return SUCCESS;
-// }
 
 ErrorType destructor(DynamicArray *array) {
     if (!array)
@@ -34,12 +23,14 @@ ErrorType push_back(DynamicArray *array, DataType elem) {
     if (!array)
         return NULL_POINTER;
     
-    DataType *new_buf = realloc(array -> buf, sizeof(DataType) * (array -> size + 1));
+    if (array -> size == array -> capacity) {
+        array -> capacity *= 2;
+        DataType *new_buf = realloc(array -> buf, sizeof(DataType) * (array -> capacity));
+        if (!new_buf)
+            return MEMORY_ALLOC_ERROR;
+        array -> buf = new_buf;
+    }
 
-    if (!new_buf)
-        return MEMORY_ALLOC_ERROR;
-
-    array -> buf = new_buf;
     array -> buf[array -> size] = elem;
     array -> size++;
     return SUCCESS;

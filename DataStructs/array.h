@@ -1,3 +1,5 @@
+#include "errortype.h"
+
 #define CAPACITY 40
 typedef int DataType;
 
@@ -6,29 +8,22 @@ typedef struct Array {
     DataType buf[CAPACITY];
 } Array;
 
-typedef enum ErrorType {
-    SUCCESS,
-    SIZE_LIMIT,
-    NULL_POINTER,
-    OUT_OF_BOUNDS
-} ErrorType;
+ErrorType array_constructor_default(Array * array);
 
-ErrorType constructor_default(Array * array);
+ErrorType array_constructor(Array * array, unsigned size, DataType * default_buf);
 
-ErrorType constructor(Array * array, unsigned size, DataType * default_buf);
+ErrorType array_destructor(Array * array);
 
-ErrorType destructor(Array * array);
+ErrorType array_push_back(Array * array, DataType num);
 
-ErrorType push_back(Array * array, DataType num);
+ErrorType array_pop_back(Array * array);
 
-ErrorType pop_back(Array * array);
+ErrorType array_insert(Array * array, unsigned index, DataType elem);
 
-ErrorType insert(Array * array, unsigned index, DataType elem);
+ErrorType array_delete_element(Array * array, unsigned index);
 
-ErrorType delete_element(Array * array, unsigned index);
+ErrorType array_clear(Array * array);
 
-ErrorType clear(Array * array);
+ErrorType array_assign(Array * array, Array array2);
 
-ErrorType assign(Array * array, Array array2);
-
-ErrorType get_element(Array * array, unsigned index, DataType * result);
+ErrorType array_get_element(Array * array, unsigned index, DataType * result);
